@@ -1,0 +1,39 @@
+services:
+  application:
+    container_name: webapp-earth
+    build:
+      context: ./webapp-earth
+    env_file:
+      - ./webapp-earth/app/.env.prod
+    expose:
+      - "8888"
+    volumes:
+      - static_data:/vol/web
+      - /home/ubuntu/media:/backend/media
+    restart: always
+
+  proxy:
+    container_name: nginx
+    build:
+      context: ./proxy
+    volumes:
+      - static_data:/vol/static
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /home/ubuntu/media:/vol/media
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - application
+    restart: always
+
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:v1.7.0
+    volumes:
+      - static_data:/vol/static
+      - /etc/letsencrypt:/etc/letsencrypt
+    command: ["--version"]
+
+volumes:
+  static_data:
