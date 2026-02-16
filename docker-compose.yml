@@ -17,7 +17,7 @@ services:
     build:
       context: ./proxy
     volumes:
-      - static_data:/vol/static
+      - static_data:/vol/web
       - /etc/letsencrypt:/etc/letsencrypt
       - /home/ubuntu/media:/vol/media
     ports:
@@ -25,13 +25,14 @@ services:
       - "443:443"
     depends_on:
       - application
+    entrypoint: /docker-entrypoint.sh
     restart: always
 
   certbot:
     container_name: certbot
     image: certbot/certbot:v1.7.0
     volumes:
-      - static_data:/vol/static
+      - static_data:/vol/web
       - /etc/letsencrypt:/etc/letsencrypt
     command: ["--version"]
 
