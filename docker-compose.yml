@@ -1,4 +1,5 @@
 services:
+  # Please change application section for your web app.
   application:
     container_name: webapp-earth
     build:
