@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository provides a minimal, production‑oriented **HTTPS reverse proxy setup using Nginx and Certbot** for containerized web applications.  
+This repository provides a minimal, production‑oriented **HTTPS reverse proxy setup using Nginx and Certbot** for containerized web applications.
 It is designed to sit in front of an application container (for example, a Django app defined as `webapp-earth` in `docker-compose.yml`) and terminate TLS using Let’s Encrypt certificates.
 
 The setup is intentionally lightweight so you can adapt it to different backends and environments.
@@ -21,9 +21,9 @@ The exact container definitions and wiring are described in `docker-compose.yml`
 
 Nginx configuration for the proxy lives under the `proxy/` directory.
 
-- **Base sample config**: `proxy/default_sample.conf`  
+- **Base sample config**: `proxy/default_sample.conf`
   Copy and adapt this file to match your environment (domains, upstream host/port, etc.).
-- **Production config**: `proxy/default_prod.conf`  
+- **Production config**: `proxy/default_prod.conf`
   After editing the sample, rename it to `default_prod.conf`. This file is mounted into the Nginx container and used as the active configuration.
 
 Typical changes you may need to make:
@@ -45,8 +45,8 @@ Before running this stack, ensure you have:
 1. **Clone the repository**
 
    ```bash
-   git clone <YOUR_REPO_URL> kicori
-   cd kicori
+   git clone <YOUR_REPO_URL> project
+   cd project
    ```
 
 2. **Configure Nginx**
@@ -88,11 +88,11 @@ Before running this stack, ensure you have:
 
 ## Troubleshooting
 
-- **Certificates not issued**:  
-  - Check that your domain’s DNS records point to the correct server.  
+- **Certificates not issued**:
+  - Check that your domain’s DNS records point to the correct server.
   - Ensure ports 80 and 443 are not blocked by a firewall or occupied by another service.
-- **502/504 errors**:  
-  - Verify that the application container is running and listening on the port referenced in `default_prod.conf`.  
+- **502/504 errors**:
+  - Verify that the application container is running and listening on the port referenced in `default_prod.conf`.
   - Confirm the upstream configuration (host and port) is correct.
 
-This README is meant as a starting point—feel free to extend it with details specific to your deployment or application. 
+This README is meant as a starting point—feel free to extend it with details specific to your deployment or application.
