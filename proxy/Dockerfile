@@ -14,6 +14,11 @@ RUN mkdir -p /vol/web/media
 RUN chown -R nginx:0 /vol/web
 RUN chmod -R 755 /vol/web
 
+# Folder for curl (OPTIONAL. safe to remove below 3 lines.)
+RUN mkdir -p /vol/8880/private
+RUN chown -R nginx:0 /vol/8880
+RUN chmod -R 755 /vol/8880
+
 COPY ./entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
