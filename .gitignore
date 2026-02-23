@@ -1,7 +1,7 @@
 webapp-earth
 webapp-mars
 default_prod.conf
-GEMINI.md
+private/
 
 __pycache__/
 .vscode
