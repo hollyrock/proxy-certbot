@@ -24,6 +24,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8880:8880"
     depends_on:
       - application
     entrypoint: /docker-entrypoint.sh

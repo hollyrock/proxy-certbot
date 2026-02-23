@@ -85,6 +85,7 @@ Before running this stack, ensure you have:
 - **Certificate renewal**: Certbot is intended to handle automatic renewal of certificates. Ensure that any renewal hooks or cron/systemd timers defined in the image or `entrypoint.sh` meet your operational requirements.
 - **Backend applications**: Although this environment was initially created for a **Django + Nginx + uWSGI + Certbot** stack, you can adapt it to other backends (Node.js, Flask, etc.) by adjusting the upstream configuration.
 - **Security hardening**: For production, review and harden the Nginx configuration (TLS versions, ciphers, headers such as HSTS, etc.) according to your security policies.
+- **Port 8880 and Tailscale‑only access**: If you expose an additional HTTP port such as `8880:8880` in `docker-compose.yml` (for example, to serve content only to devices on your Tailscale network), be aware that Docker will bind it on all host interfaces by default. To restrict access to Tailscale only without hard‑coding private IPs in `docker-compose.yml`, configure your host firewall (iptables, ufw, firewalld, etc.) so that TCP port 8880 is accepted only from the Tailscale interface or Tailscale address range, and dropped from all other sources. In this model, the firewall becomes the single source of truth for exposure of port 8880, so make sure its rules are version‑controlled or scripted and carefully reviewed.
 
 ## Troubleshooting
 
