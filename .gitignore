@@ -2,6 +2,7 @@ webapp-earth
 webapp-mars
 default_prod.conf
 private/
+docker-compose.yml
 
 __pycache__/
 .vscode
